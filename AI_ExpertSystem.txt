@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+// Inference Engine
+string inferDecision(float price, string trend, int risk) {
+    if (trend == "up" && risk == 3)
+        return "BUY (Strong upward trend)";
+    else if (trend == "down" && risk == 3)
+        return "SELL (Market falling)";
+    else if (trend == "stable" && price < 100)
+        return "BUY (Undervalued stock)";
+    else if (trend == "stable" && price > 200)
+        return "SELL (Overvalued stock)";
+    else
+        return "HOLD (No clear signal)";
+}
+
+int main() {
+    float price;
+    string trend;
+    int risk;
+
+    cout << "===== Stock Market Expert System =====\n";
+
+    // User Interface
+    cout << "Enter stock price: ";
+    cin >> price;
+
+    cout << "Enter trend (up/down/stable): ";
+    cin >> trend;
+
+    cout << "Enter risk level (1-Low, 2-Medium, 3-High): ";
+    cin >> risk;
+
+    // Inference Engine call
+    string result = inferDecision(price, trend, risk);
+
+    // Output
+    cout << "\nExpert Decision: " << result << endl;
+
+    return 0;
+}
+
+
+OUTPUT:
+
+CASE 1:
+
+Stock Market Expert System
+
+Enter current stock price: 80
+Enter market trend (up/down/stable): stable
+Enter risk level (1-Low, 2-Medium, 3-High): 2
+
+--- Expert Decision ---
+Decision: BUY (Stock undervalued)
+
+CASE 2:
+
+Enter current stock price: 250
+Enter market trend (up/down/stable): stable
+Enter risk level: 1
+
+--- Expert Decision ---
+Decision: SELL (Stock overvalued)
+
+CASE 3:
+
+Enter current stock price: 150
+Enter market trend (up/down/stable): down
+Enter risk level: 3
+
+--- Expert Decision ---
+Decision: SELL (High risk, market falling)

@@ -1,0 +1,81 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+// Function to convert string to lowercase
+string toLowerCase(string input) {
+    transform(input.begin(), input.end(), input.begin(), ::tolower);
+    return input;
+}
+
+int main() {
+    string userInput;
+
+    cout << "==============================\n";
+    cout << "  Welcome to Customer Chatbot\n";
+    cout << "==============================\n";
+    cout << "Type 'exit' to end chat.\n\n";
+
+    while (true) {
+        cout << "You: ";
+        getline(cin, userInput);
+
+        userInput = toLowerCase(userInput);
+
+        if (userInput == "exit") {
+            cout << "Bot: Thank you for chatting with us. Have a great day!\n";
+            break;
+        }
+        else if (userInput.find("hello") != string::npos || userInput.find("hi") != string::npos) {
+            cout << "Bot: Hello! How can I assist you today?\n";
+        }
+        else if (userInput.find("order") != string::npos) {
+            cout << "Bot: You can check your order status in the 'My Orders' section.\n";
+        }
+        else if (userInput.find("refund") != string::npos) {
+            cout << "Bot: Refunds are processed within 5-7 business days.\n";
+        }
+        else if (userInput.find("delivery") != string::npos) {
+            cout << "Bot: Delivery usually takes 3-5 business days.\n";
+        }
+        else if (userInput.find("contact") != string::npos || userInput.find("support") != string::npos) {
+            cout << "Bot: You can contact support at support@example.com.\n";
+        }
+        else if (userInput.find("thanks") != string::npos || userInput.find("thank you") != string::npos) {
+            cout << "Bot: You're welcome! 😊\n";
+        }
+        else {
+            cout << "Bot: Sorry, I didn't understand that. Can you rephrase?\n";
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+OUTPUT:
+
+==============================
+  Welcome to Customer Chatbot
+==============================
+Type 'exit' to end chat.
+
+You: Hi
+Bot: Hello! How can I assist you today?
+
+You: What is delivery time?
+Bot: Delivery usually takes 3-5 business days.
+
+You: I want refund
+Bot: Refunds are processed within 5-7 business days.
+
+You: contact support
+Bot: You can contact support at support@example.com.
+
+You: exit
+Bot: Thank you for chatting with us. Have a great day!
